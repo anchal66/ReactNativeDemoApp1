@@ -5,12 +5,14 @@ import { Feather } from '@expo/vector-icons';
 export default SearchBar = (props) => {
     return <View style={styles.backgroundStyle}>
         <Feather name="search" style={styles.iconStyle} />
-        <TextInput 
-        autoCorrect={false}
-        autoCapitalize={false}
-        value={props.term}
-        onChangeText={newTerm => props.onTermChange(newTerm)}
-        style={styles.inputStyle} placeholder="Search"/>
+        <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={props.term}
+            style={styles.inputStyle} placeholder="Search"
+            onChangeText={newTerm => props.onTermChange(newTerm)}
+            onEndEditing={()=>props.onTermSubmit}
+            />
     </View>
 }
 const styles = StyleSheet.create({
