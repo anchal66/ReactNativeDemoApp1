@@ -2,10 +2,15 @@ import React from 'react'
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 
-export default SearchBar = () => {
+export default SearchBar = (props) => {
     return <View style={styles.backgroundStyle}>
         <Feather name="search" style={styles.iconStyle} />
-        <TextInput style={styles.inputStyle} placeholder="Search"/>
+        <TextInput 
+        autoCorrect={false}
+        autoCapitalize={false}
+        value={props.term}
+        onChangeText={newTerm => props.onTermChange(newTerm)}
+        style={styles.inputStyle} placeholder="Search"/>
     </View>
 }
 const styles = StyleSheet.create({
