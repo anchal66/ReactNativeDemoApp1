@@ -11,7 +11,7 @@ export default SearchBar = (props) => {
             value={props.term}
             style={styles.inputStyle} placeholder="Search"
             onChangeText={newTerm => props.onTermChange(newTerm)}
-            onEndEditing={()=>props.onTermSubmit}
+            onEndEditing={()=>props.onTermSubmit()}
             />
     </View>
 }
