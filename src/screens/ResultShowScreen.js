@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import yelp from '../api/yelp';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default ResultShowScreen = ({navigation}) => {
     const id = navigation.getParam('id');
     const [result, setResult] = useState(null);
-    console.log('rest',result)
 
     const getRestraunt =async (id) =>{
         const response = await yelp.get(`/${id}`);
@@ -15,7 +15,26 @@ export default ResultShowScreen = ({navigation}) => {
     useEffect(()=>{
         getRestraunt(id);
     },[]);
-
-    return <Text>Testing</Text>
+    if(!result){
+        return null
+    }
+    return (
+        <FlatList 
+            data={result.photos}
+            keyExtractor={(photo)=>photo}
+            renderItem={({item})=>{
+                return(
+                <Image 
+                    style={styles.imageStyle} 
+                    source={{uri: item}} />
+                )
+            }}
+        />
+    )
 }
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    imageStyle:{
+        height: 200,
+        width: 300
+    }
+});
