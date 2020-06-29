@@ -2,8 +2,9 @@ import React from 'react'
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import ResultDetails from './ResultDetails';
+import { withNavigation } from 'react-navigation';
 
-export default ResultList = (props) => {
+const ResultList = (props) => {
     return <View style={styles.container}>
         <Text style={styles.titleStyle}>{props.title}</Text>
         <FlatList
@@ -32,3 +33,5 @@ const styles = StyleSheet.create({
         marginBottom: 5
     }
 })
+
+export default withNavigation(ResultList);
