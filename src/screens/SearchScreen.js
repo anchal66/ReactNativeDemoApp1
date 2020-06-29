@@ -16,7 +16,7 @@ export default SearchScreen = () => {
         })
     }
 
-    return <View>
+    return <View style={{flex:1}}>
         <SearchBar
             term={term}
             onTermChange={newTerm => setTerm(newTerm)}
