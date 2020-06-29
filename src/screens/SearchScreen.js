@@ -5,8 +5,7 @@ import useRestruants from '../hooks/useRestruants';
 import ResultsList from '../../components/ResultsList';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default SearchScreen = () => {
-
+export default SearchScreen = (props) => {
     const [term, setTerm] = useState('');
     const [searchApi, restruants, errMsg] = useRestruants();
 
@@ -22,7 +21,6 @@ export default SearchScreen = () => {
             onTermChange={newTerm => setTerm(newTerm)}
             onTermSubmit={() => searchApi()} />
         {errMsg ? <Text>{errMsg}</Text> : null}
-        <Text>Found: {restruants.length} results</Text>
         <ScrollView>
             <ResultsList restruants={filterResultByPrice('$')} title="Cost Effective" />
             <ResultsList restruants={filterResultByPrice('$$')} title="Bit Pricy" />
