@@ -16,7 +16,7 @@ export default SearchScreen = () => {
         })
     }
 
-    return <View style={{flex:1}}>
+    return <>
         <SearchBar
             term={term}
             onTermChange={newTerm => setTerm(newTerm)}
@@ -28,6 +28,6 @@ export default SearchScreen = () => {
             <ResultsList restruants={filterResultByPrice('$$')} title="Bit Pricy" />
             <ResultsList restruants={filterResultByPrice('$$$')} title="Big Spender" />
         </ScrollView>
-    </View>
+    </>
 }
 const styles = StyleSheet.create({});
