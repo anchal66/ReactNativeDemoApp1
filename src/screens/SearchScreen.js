@@ -7,6 +7,7 @@ export default SearchScreen = () => {
 
     const [term, setTerm] = useState('');
     const [restruants, setRestruants] = useState([]);
+    const [errMsg, setErrMsg] = useState('');
 
     const searchApi = async () => {
         try {
@@ -20,14 +21,14 @@ export default SearchScreen = () => {
             setRestruants(response.data.businesses);
         }
         catch(e){
-            console.log('err ', e);
+            setErrMsg('Something went wrong');
         }
     };
 
     return <View>
         <SearchBar
             term={term} onTermChange={newTerm => setTerm(newTerm)} onTermSubmit={searchApi} />
-        <Text>In Search</Text>
+        {errMsg ? <Text>{errMsg}</Text>: null}
         <Text>Found: {restruants.length} results</Text>
     </View>
 }
