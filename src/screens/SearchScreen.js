@@ -8,6 +8,12 @@ export default SearchScreen = () => {
 
     const [term, setTerm] = useState('');
     const [searchApi, restruants, errMsg] = useRestruants();
+
+    const filterResultByPrice = (price)=>{
+        return restruants.filter(restruant=>{
+            return restruant.price === price;
+        })
+    }
     
     return <View>
         <SearchBar
@@ -16,9 +22,9 @@ export default SearchScreen = () => {
              onTermSubmit={()=>searchApi()} />
         {errMsg ? <Text>{errMsg}</Text>: null}
         <Text>Found: {restruants.length} results</Text>
-        <ResultsList title="Cost Effective"/>
-        <ResultsList title="Bit Pricy"/>
-        <ResultsList title="Big Spender"/>
+        <ResultsList restruants={filterResultByPrice('$')} title="Cost Effective"/>
+        <ResultsList restruants={filterResultByPrice('$$')} title="Bit Pricy"/>
+        <ResultsList restruants={filterResultByPrice('$$$')} title="Big Spender"/>
     </View>
 }
 const styles = StyleSheet.create({});
